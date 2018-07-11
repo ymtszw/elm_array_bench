@@ -40,7 +40,7 @@ sampleSuite =
                 "Array of 1000 elements, access to 500th"
                 (\_ -> Array.get 500 array1000)
                 "Array of 100000 elements, access to 50000th"
-                (\_ -> Array.get 50000 array1000)
+                (\_ -> Array.get 50000 array100000)
             , Benchmark.compare "index access"
                 "Array of 1000 elements, access to 500th"
                 (\_ -> Array.get 500 array1000)
