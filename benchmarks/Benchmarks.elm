@@ -30,37 +30,53 @@ sampleSuite =
         list100000 =
             List.repeat 100000 0
     in
-        describe "Array"
-            [ Benchmark.compare "index access"
-                "Array of 10 elements, access to 5th"
-                (\_ -> Array.get 5 array10)
-                "Array of 1000 elements, access to 500th"
-                (\_ -> Array.get 500 array1000)
-            , Benchmark.compare "index access"
-                "Array of 1000 elements, access to 500th"
-                (\_ -> Array.get 500 array1000)
-                "Array of 100000 elements, access to 50000th"
-                (\_ -> Array.get 50000 array100000)
-            , Benchmark.compare "index access"
-                "Array of 1000 elements, access to 500th"
-                (\_ -> Array.get 500 array1000)
-                "Array.Hamt of 1000 elements, access to 500th"
-                (\_ -> Hamt.get 500 hamt1000)
-            , Benchmark.compare "index access"
-                "Array of 100000 elements, access to 50000th"
-                (\_ -> Array.get 50000 array100000)
-                "Array.Hamt of 100000 elements, access to 50000th"
-                (\_ -> Hamt.get 50000 hamt100000)
-            , Benchmark.compare "Array/List index access (for reference)"
-                "Array of 1000 elements, access to 500th"
-                (\_ -> Array.get 500 array1000)
-                "List of 1000 elements, access to 500th"
-                (\_ -> list1000 |> List.drop 500 |> List.head)
-            , Benchmark.compare "List index access (for reference)"
-                "List of 1000 elements, access to 500th"
-                (\_ -> list1000 |> List.drop 500 |> List.head)
-                "List of 100000 elements, access to 50000th"
-                (\_ -> list100000 |> List.drop 50000 |> List.head)
+        describe "Container"
+            [ describe "index access"
+                [ Benchmark.compare "Array 10 to 1000 elements"
+                    "Array(10), access to 5th"
+                    (\_ -> Array.get 5 array10)
+                    "Array(1000), access to 500th"
+                    (\_ -> Array.get 500 array1000)
+                , Benchmark.compare "Array 1000 to 100000 elements"
+                    "Array(1000), access to 500th"
+                    (\_ -> Array.get 500 array1000)
+                    "Array(100000), access to 50000th"
+                    (\_ -> Array.get 50000 array100000)
+                , Benchmark.compare "Array and Array.Hamt, 1000 elements"
+                    "Array(1000), access to 500th"
+                    (\_ -> Array.get 500 array1000)
+                    "Array.Hamt(1000), access to 500th"
+                    (\_ -> Hamt.get 500 hamt1000)
+                , Benchmark.compare "Array and Array.Hamt, 100000 elements"
+                    "Array(100000), access to 50000th"
+                    (\_ -> Array.get 50000 array100000)
+                    "Array.Hamt(100000), access to 50000th"
+                    (\_ -> Hamt.get 50000 hamt100000)
+                , Benchmark.compare "Array and List, 1000 elements"
+                    "Array(1000), access to 500th"
+                    (\_ -> Array.get 500 array1000)
+                    "List(1000), access to 500th"
+                    (\_ -> list1000 |> List.drop 500 |> List.head)
+                , Benchmark.compare "List 1000 to 100000 elements"
+                    "List(1000), access to 500th"
+                    (\_ -> list1000 |> List.drop 500 |> List.head)
+                    "List(100000), access to 50000th"
+                    (\_ -> list100000 |> List.drop 50000 |> List.head)
+                ]
+            , describe "initialize"
+                [ Benchmark.benchmark "Array 1000" <|
+                    \_ -> Array.initialize 1000 (always 0)
+                , Benchmark.benchmark "Array 100000" <|
+                    \_ -> Array.initialize 100000 (always 0)
+                , Benchmark.benchmark "Array.Hamt 1000" <|
+                    \_ -> Hamt.initialize 1000 (always 0)
+                , Benchmark.benchmark "Array.Hamt 100000" <|
+                    \_ -> Hamt.initialize 100000 (always 0)
+                , Benchmark.benchmark "List 1000" <|
+                    \_ -> List.repeat 1000 0
+                , Benchmark.benchmark "List 100000" <|
+                    \_ -> List.repeat 100000 0
+                ]
             ]
 
 

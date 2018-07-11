@@ -26243,93 +26243,173 @@ var _user$project$Benchmarks$sampleSuite = function () {
 		_elm_lang$core$Basics$always(0));
 	return A2(
 		_BrianHicks$elm_benchmark$Benchmark$describe,
-		'Array',
+		'Container',
 		{
 			ctor: '::',
-			_0: A5(
-				_BrianHicks$elm_benchmark$Benchmark$compare,
+			_0: A2(
+				_BrianHicks$elm_benchmark$Benchmark$describe,
 				'index access',
-				'Array of 10 elements, access to 5th',
-				function (_p0) {
-					return A2(_elm_lang$core$Array$get, 5, array10);
-				},
-				'Array of 1000 elements, access to 500th',
-				function (_p1) {
-					return A2(_elm_lang$core$Array$get, 500, array1000);
-				}),
-			_1: {
-				ctor: '::',
-				_0: A5(
-					_BrianHicks$elm_benchmark$Benchmark$compare,
-					'index access',
-					'Array of 1000 elements, access to 500th',
-					function (_p2) {
-						return A2(_elm_lang$core$Array$get, 500, array1000);
-					},
-					'Array of 100000 elements, access to 50000th',
-					function (_p3) {
-						return A2(_elm_lang$core$Array$get, 50000, array100000);
-					}),
-				_1: {
+				{
 					ctor: '::',
 					_0: A5(
 						_BrianHicks$elm_benchmark$Benchmark$compare,
-						'index access',
-						'Array of 1000 elements, access to 500th',
-						function (_p4) {
-							return A2(_elm_lang$core$Array$get, 500, array1000);
+						'Array 10 to 1000 elements',
+						'Array(10), access to 5th',
+						function (_p0) {
+							return A2(_elm_lang$core$Array$get, 5, array10);
 						},
-						'Array.Hamt of 1000 elements, access to 500th',
-						function (_p5) {
-							return A2(_Skinney$elm_array_exploration$Array_Hamt$get, 500, hamt1000);
+						'Array(1000), access to 500th',
+						function (_p1) {
+							return A2(_elm_lang$core$Array$get, 500, array1000);
 						}),
 					_1: {
 						ctor: '::',
 						_0: A5(
 							_BrianHicks$elm_benchmark$Benchmark$compare,
-							'index access',
-							'Array of 100000 elements, access to 50000th',
-							function (_p6) {
-								return A2(_elm_lang$core$Array$get, 50000, array100000);
+							'Array 1000 to 100000 elements',
+							'Array(1000), access to 500th',
+							function (_p2) {
+								return A2(_elm_lang$core$Array$get, 500, array1000);
 							},
-							'Array.Hamt of 100000 elements, access to 50000th',
-							function (_p7) {
-								return A2(_Skinney$elm_array_exploration$Array_Hamt$get, 50000, hamt100000);
+							'Array(100000), access to 50000th',
+							function (_p3) {
+								return A2(_elm_lang$core$Array$get, 50000, array100000);
 							}),
 						_1: {
 							ctor: '::',
 							_0: A5(
 								_BrianHicks$elm_benchmark$Benchmark$compare,
-								'Array/List index access (for reference)',
-								'Array of 1000 elements, access to 500th',
-								function (_p8) {
+								'Array and Array.Hamt, 1000 elements',
+								'Array(1000), access to 500th',
+								function (_p4) {
 									return A2(_elm_lang$core$Array$get, 500, array1000);
 								},
-								'List of 1000 elements, access to 500th',
-								function (_p9) {
-									return _elm_lang$core$List$head(
-										A2(_elm_lang$core$List$drop, 500, list1000));
+								'Array.Hamt(1000), access to 500th',
+								function (_p5) {
+									return A2(_Skinney$elm_array_exploration$Array_Hamt$get, 500, hamt1000);
 								}),
 							_1: {
 								ctor: '::',
 								_0: A5(
 									_BrianHicks$elm_benchmark$Benchmark$compare,
-									'List index access (for reference)',
-									'List of 1000 elements, access to 500th',
-									function (_p10) {
-										return _elm_lang$core$List$head(
-											A2(_elm_lang$core$List$drop, 500, list1000));
+									'Array and Array.Hamt, 100000 elements',
+									'Array(100000), access to 50000th',
+									function (_p6) {
+										return A2(_elm_lang$core$Array$get, 50000, array100000);
 									},
-									'List of 100000 elements, access to 50000th',
-									function (_p11) {
-										return _elm_lang$core$List$head(
-											A2(_elm_lang$core$List$drop, 50000, list100000));
+									'Array.Hamt(100000), access to 50000th',
+									function (_p7) {
+										return A2(_Skinney$elm_array_exploration$Array_Hamt$get, 50000, hamt100000);
 									}),
-								_1: {ctor: '[]'}
+								_1: {
+									ctor: '::',
+									_0: A5(
+										_BrianHicks$elm_benchmark$Benchmark$compare,
+										'Array and List, 1000 elements',
+										'Array(1000), access to 500th',
+										function (_p8) {
+											return A2(_elm_lang$core$Array$get, 500, array1000);
+										},
+										'List(1000), access to 500th',
+										function (_p9) {
+											return _elm_lang$core$List$head(
+												A2(_elm_lang$core$List$drop, 500, list1000));
+										}),
+									_1: {
+										ctor: '::',
+										_0: A5(
+											_BrianHicks$elm_benchmark$Benchmark$compare,
+											'List 1000 to 100000 elements',
+											'List(1000), access to 500th',
+											function (_p10) {
+												return _elm_lang$core$List$head(
+													A2(_elm_lang$core$List$drop, 500, list1000));
+											},
+											'List(100000), access to 50000th',
+											function (_p11) {
+												return _elm_lang$core$List$head(
+													A2(_elm_lang$core$List$drop, 50000, list100000));
+											}),
+										_1: {ctor: '[]'}
+									}
+								}
 							}
 						}
 					}
-				}
+				}),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_BrianHicks$elm_benchmark$Benchmark$describe,
+					'initialize',
+					{
+						ctor: '::',
+						_0: A2(
+							_BrianHicks$elm_benchmark$Benchmark$benchmark,
+							'Array 1000',
+							function (_p12) {
+								return A2(
+									_elm_lang$core$Array$initialize,
+									1000,
+									_elm_lang$core$Basics$always(0));
+							}),
+						_1: {
+							ctor: '::',
+							_0: A2(
+								_BrianHicks$elm_benchmark$Benchmark$benchmark,
+								'Array 100000',
+								function (_p13) {
+									return A2(
+										_elm_lang$core$Array$initialize,
+										100000,
+										_elm_lang$core$Basics$always(0));
+								}),
+							_1: {
+								ctor: '::',
+								_0: A2(
+									_BrianHicks$elm_benchmark$Benchmark$benchmark,
+									'Array.Hamt 1000',
+									function (_p14) {
+										return A2(
+											_Skinney$elm_array_exploration$Array_Hamt$initialize,
+											1000,
+											_elm_lang$core$Basics$always(0));
+									}),
+								_1: {
+									ctor: '::',
+									_0: A2(
+										_BrianHicks$elm_benchmark$Benchmark$benchmark,
+										'Array.Hamt 100000',
+										function (_p15) {
+											return A2(
+												_Skinney$elm_array_exploration$Array_Hamt$initialize,
+												100000,
+												_elm_lang$core$Basics$always(0));
+										}),
+									_1: {
+										ctor: '::',
+										_0: A2(
+											_BrianHicks$elm_benchmark$Benchmark$benchmark,
+											'List 1000',
+											function (_p16) {
+												return A2(_elm_lang$core$List$repeat, 1000, 0);
+											}),
+										_1: {
+											ctor: '::',
+											_0: A2(
+												_BrianHicks$elm_benchmark$Benchmark$benchmark,
+												'List 100000',
+												function (_p17) {
+													return A2(_elm_lang$core$List$repeat, 100000, 0);
+												}),
+											_1: {ctor: '[]'}
+										}
+									}
+								}
+							}
+						}
+					}),
+				_1: {ctor: '[]'}
 			}
 		});
 }();
