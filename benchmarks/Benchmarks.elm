@@ -26,6 +26,9 @@ sampleSuite =
 
         list1000 =
             List.repeat 1000 0
+
+        list100000 =
+            List.repeat 100000 0
     in
         describe "Array"
             [ Benchmark.compare "index access"
@@ -48,11 +51,16 @@ sampleSuite =
                 (\_ -> Array.get 50000 array100000)
                 "Array.Hamt of 100000 elements, access to 50000th"
                 (\_ -> Hamt.get 50000 hamt100000)
-            , Benchmark.compare "index access (for reference)"
+            , Benchmark.compare "Array/List index access (for reference)"
                 "Array of 1000 elements, access to 500th"
                 (\_ -> Array.get 500 array1000)
                 "List of 1000 elements, access to 500th"
                 (\_ -> list1000 |> List.drop 500 |> List.head)
+            , Benchmark.compare "List index access (for reference)"
+                "List of 1000 elements, access to 500th"
+                (\_ -> list1000 |> List.drop 500 |> List.head)
+                "List of 100000 elements, access to 50000th"
+                (\_ -> list100000 |> List.drop 50000 |> List.head)
             ]
 
 

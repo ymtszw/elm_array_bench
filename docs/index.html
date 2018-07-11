@@ -26219,6 +26219,7 @@ var _Skinney$elm_array_exploration$Array_Hamt$slice = F3(
 			A2(_Skinney$elm_array_exploration$Array_Hamt$sliceRight, correctTo, arr));
 	});
 var _user$project$Benchmarks$sampleSuite = function () {
+	var list100000 = A2(_elm_lang$core$List$repeat, 100000, 0);
 	var list1000 = A2(_elm_lang$core$List$repeat, 1000, 0);
 	var hamt100000 = A2(
 		_Skinney$elm_array_exploration$Array_Hamt$initialize,
@@ -26299,7 +26300,7 @@ var _user$project$Benchmarks$sampleSuite = function () {
 							ctor: '::',
 							_0: A5(
 								_BrianHicks$elm_benchmark$Benchmark$compare,
-								'index access (for reference)',
+								'Array/List index access (for reference)',
 								'Array of 1000 elements, access to 500th',
 								function (_p8) {
 									return A2(_elm_lang$core$Array$get, 500, array1000);
@@ -26309,7 +26310,23 @@ var _user$project$Benchmarks$sampleSuite = function () {
 									return _elm_lang$core$List$head(
 										A2(_elm_lang$core$List$drop, 500, list1000));
 								}),
-							_1: {ctor: '[]'}
+							_1: {
+								ctor: '::',
+								_0: A5(
+									_BrianHicks$elm_benchmark$Benchmark$compare,
+									'List index access (for reference)',
+									'List of 1000 elements, access to 500th',
+									function (_p10) {
+										return _elm_lang$core$List$head(
+											A2(_elm_lang$core$List$drop, 500, list1000));
+									},
+									'List of 100000 elements, access to 50000th',
+									function (_p11) {
+										return _elm_lang$core$List$head(
+											A2(_elm_lang$core$List$drop, 50000, list100000));
+									}),
+								_1: {ctor: '[]'}
+							}
 						}
 					}
 				}
