@@ -2,4 +2,4 @@
 
 Just benchmarking index access performances of Elm's Array and List.
 
-https://ymtszzw.github.io/elm_array_bench/
+https://ymtszw.github.io/elm_array_bench/
