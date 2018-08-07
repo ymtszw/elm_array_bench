@@ -58,5 +58,6 @@ view model =
         , Html.ul []
             [ Html.li [] [ Html.a [ Html.Attributes.href "container_init.html" ] [ Html.text "initialization" ] ]
             , Html.li [] [ Html.a [ Html.Attributes.href "container_index_access.html" ] [ Html.text "index access" ] ]
+            , Html.li [] [ Html.a [ Html.Attributes.href "range_access.html" ] [ Html.text "range access" ] ]
             ]
         ]
