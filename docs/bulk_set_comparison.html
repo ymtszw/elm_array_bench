@@ -26314,15 +26314,24 @@ var _Skinney$elm_array_exploration$Array_Hamt$slice = F3(
 			A2(_Skinney$elm_array_exploration$Array_Hamt$sliceRight, correctTo, arr));
 	});
 var _ymtszw$elm_array_bench$BulkSetComparison$suite = function () {
+	var list500 = A2(_elm_lang$core$List$repeat, 500, 1);
 	var list1000 = A2(_elm_lang$core$List$repeat, 1000, 1);
 	var hamt0 = _Skinney$elm_array_exploration$Array_Hamt$fromList(
 		{ctor: '[]'});
+	var hamt500 = A2(
+		_Skinney$elm_array_exploration$Array_Hamt$initialize,
+		500,
+		_elm_lang$core$Basics$always(0));
 	var hamt1000 = A2(
 		_Skinney$elm_array_exploration$Array_Hamt$initialize,
 		1000,
 		_elm_lang$core$Basics$always(0));
 	var array0 = _elm_lang$core$Array$fromList(
 		{ctor: '[]'});
+	var array500 = A2(
+		_elm_lang$core$Array$initialize,
+		500,
+		_elm_lang$core$Basics$always(0));
 	var array1000 = A2(
 		_elm_lang$core$Array$initialize,
 		1000,
@@ -26332,88 +26341,197 @@ var _ymtszw$elm_array_bench$BulkSetComparison$suite = function () {
 		'Bulk set comparison',
 		{
 			ctor: '::',
-			_0: A5(
-				_BrianHicks$elm_benchmark$Benchmark$compare,
-				'Sequentially set to a fixed length Array',
-				'Array.set 1000 times',
-				function (_p0) {
-					return A3(
-						_elm_lang$core$List$foldl,
-						F2(
-							function (elem, _p1) {
-								var _p2 = _p1;
-								var _p3 = _p2._1;
-								return {
-									ctor: '_Tuple2',
-									_0: A3(_elm_lang$core$Array$set, _p3, elem, _p2._0),
-									_1: _p3 + 1
-								};
-							}),
-						{ctor: '_Tuple2', _0: array1000, _1: 0},
-						list1000);
-				},
-				'Hamt.set 1000 times',
-				function (_p4) {
-					return A3(
-						_elm_lang$core$List$foldl,
-						F2(
-							function (elem, _p5) {
-								var _p6 = _p5;
-								var _p7 = _p6._1;
-								return {
-									ctor: '_Tuple2',
-									_0: A3(_Skinney$elm_array_exploration$Array_Hamt$set, _p7, elem, _p6._0),
-									_1: _p7 + 1
-								};
-							}),
-						{ctor: '_Tuple2', _0: hamt1000, _1: 0},
-						list1000);
-				}),
-			_1: {
-				ctor: '::',
-				_0: A5(
-					_BrianHicks$elm_benchmark$Benchmark$compare,
-					'Append two Arrays',
-					'Array.append 1000 elements array to empty array',
-					function (_p8) {
-						return A2(
-							_elm_lang$core$Array$append,
-							array0,
-							_elm_lang$core$Array$fromList(list1000));
-					},
-					'Hamt.append 1000 elements array to empty array',
-					function (_p9) {
-						return A2(
-							_Skinney$elm_array_exploration$Array_Hamt$append,
-							hamt0,
-							_Skinney$elm_array_exploration$Array_Hamt$fromList(list1000));
-					}),
-				_1: {
+			_0: A2(
+				_BrianHicks$elm_benchmark$Benchmark$describe,
+				'Sequentially set to a fixed 1000-length Array',
+				{
 					ctor: '::',
 					_0: A5(
 						_BrianHicks$elm_benchmark$Benchmark$compare,
-						'Sequentially push to a 0-length Array',
-						'Array.push 1000 times',
-						function (_p10) {
+						'1000 items from the first',
+						'Array.set',
+						function (_p0) {
 							return A3(
 								_elm_lang$core$List$foldl,
 								F2(
-									function (elem, array) {
-										return A2(_elm_lang$core$Array$push, elem, array);
+									function (elem, _p1) {
+										var _p2 = _p1;
+										var _p3 = _p2._1;
+										return {
+											ctor: '_Tuple2',
+											_0: A3(_elm_lang$core$Array$set, _p3, elem, _p2._0),
+											_1: _p3 + 1
+										};
 									}),
-								array0,
+								{ctor: '_Tuple2', _0: array1000, _1: 0},
 								list1000);
 						},
-						'Hamt.push 1000 times',
-						function (_p11) {
+						'Hamt.set',
+						function (_p4) {
 							return A3(
 								_elm_lang$core$List$foldl,
 								F2(
-									function (elem, array) {
-										return A2(_Skinney$elm_array_exploration$Array_Hamt$push, elem, array);
+									function (elem, _p5) {
+										var _p6 = _p5;
+										var _p7 = _p6._1;
+										return {
+											ctor: '_Tuple2',
+											_0: A3(_Skinney$elm_array_exploration$Array_Hamt$set, _p7, elem, _p6._0),
+											_1: _p7 + 1
+										};
 									}),
-								hamt0,
+								{ctor: '_Tuple2', _0: hamt1000, _1: 0},
 								list1000);
+						}),
+					_1: {
+						ctor: '::',
+						_0: A5(
+							_BrianHicks$elm_benchmark$Benchmark$compare,
+							'500 items from the middle',
+							'Array.set',
+							function (_p8) {
+								return A3(
+									_elm_lang$core$List$foldl,
+									F2(
+										function (elem, _p9) {
+											var _p10 = _p9;
+											var _p11 = _p10._1;
+											return {
+												ctor: '_Tuple2',
+												_0: A3(_elm_lang$core$Array$set, _p11, elem, _p10._0),
+												_1: _p11 + 1
+											};
+										}),
+									{ctor: '_Tuple2', _0: array1000, _1: 500},
+									list500);
+							},
+							'Hamt.set',
+							function (_p12) {
+								return A3(
+									_elm_lang$core$List$foldl,
+									F2(
+										function (elem, _p13) {
+											var _p14 = _p13;
+											var _p15 = _p14._1;
+											return {
+												ctor: '_Tuple2',
+												_0: A3(_Skinney$elm_array_exploration$Array_Hamt$set, _p15, elem, _p14._0),
+												_1: _p15 + 1
+											};
+										}),
+									{ctor: '_Tuple2', _0: hamt1000, _1: 500},
+									list500);
+							}),
+						_1: {ctor: '[]'}
+					}
+				}),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_BrianHicks$elm_benchmark$Benchmark$describe,
+					'Append two Arrays',
+					{
+						ctor: '::',
+						_0: A5(
+							_BrianHicks$elm_benchmark$Benchmark$compare,
+							'1000 items into empty array',
+							'Array.append',
+							function (_p16) {
+								return A2(
+									_elm_lang$core$Array$append,
+									array0,
+									_elm_lang$core$Array$fromList(list1000));
+							},
+							'Hamt.append',
+							function (_p17) {
+								return A2(
+									_Skinney$elm_array_exploration$Array_Hamt$append,
+									hamt0,
+									_Skinney$elm_array_exploration$Array_Hamt$fromList(list1000));
+							}),
+						_1: {
+							ctor: '::',
+							_0: A5(
+								_BrianHicks$elm_benchmark$Benchmark$compare,
+								'500 items into 500-length array',
+								'Array.append',
+								function (_p18) {
+									return A2(
+										_elm_lang$core$Array$append,
+										array500,
+										_elm_lang$core$Array$fromList(list500));
+								},
+								'Hamt.append',
+								function (_p19) {
+									return A2(
+										_Skinney$elm_array_exploration$Array_Hamt$append,
+										hamt500,
+										_Skinney$elm_array_exploration$Array_Hamt$fromList(list500));
+								}),
+							_1: {ctor: '[]'}
+						}
+					}),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_BrianHicks$elm_benchmark$Benchmark$describe,
+						'Sequentially push to an Array',
+						{
+							ctor: '::',
+							_0: A5(
+								_BrianHicks$elm_benchmark$Benchmark$compare,
+								'1000 items to empty array',
+								'Array.push',
+								function (_p20) {
+									return A3(
+										_elm_lang$core$List$foldl,
+										F2(
+											function (elem, array) {
+												return A2(_elm_lang$core$Array$push, elem, array);
+											}),
+										array0,
+										list1000);
+								},
+								'Hamt.push',
+								function (_p21) {
+									return A3(
+										_elm_lang$core$List$foldl,
+										F2(
+											function (elem, array) {
+												return A2(_Skinney$elm_array_exploration$Array_Hamt$push, elem, array);
+											}),
+										hamt0,
+										list1000);
+								}),
+							_1: {
+								ctor: '::',
+								_0: A5(
+									_BrianHicks$elm_benchmark$Benchmark$compare,
+									'500 items to 500-length array',
+									'Array.push',
+									function (_p22) {
+										return A3(
+											_elm_lang$core$List$foldl,
+											F2(
+												function (elem, array) {
+													return A2(_elm_lang$core$Array$push, elem, array);
+												}),
+											array500,
+											list500);
+									},
+									'Hamt.push',
+									function (_p23) {
+										return A3(
+											_elm_lang$core$List$foldl,
+											F2(
+												function (elem, array) {
+													return A2(_Skinney$elm_array_exploration$Array_Hamt$push, elem, array);
+												}),
+											hamt500,
+											list500);
+									}),
+								_1: {ctor: '[]'}
+							}
 						}),
 					_1: {ctor: '[]'}
 				}
